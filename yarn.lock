@@ -362,6 +362,11 @@
   "resolved" "https://registry.npmjs.org/array-union/-/array-union-2.1.0.tgz"
   "version" "2.1.0"
 
+"attr-accept@^2.2.2":
+  "integrity" "sha512-7prDjvt9HmqiZ0cl5CRjtS84sEyhsHP2coDkaZKRKVfCDo9s7iw7ChVmar78Gu9pC4SoR/28wFu/G5JJhTnqEg=="
+  "resolved" "https://registry.npmjs.org/attr-accept/-/attr-accept-2.2.2.tgz"
+  "version" "2.2.2"
+
 "balanced-match@^1.0.0":
   "integrity" "sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw=="
   "resolved" "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
@@ -799,6 +804,13 @@
   "version" "6.0.1"
   dependencies:
     "flat-cache" "^3.0.4"
+
+"file-selector@^0.2.4":
+  "integrity" "sha512-ZDsQNbrv6qRi1YTDOEWzf5J2KjZ9KMI1Q2SGeTkCJmNNW25Jg4TW4UMcmoqcg4WrAyKRcpBXdbWRxkfrOzVRbA=="
+  "resolved" "https://registry.npmjs.org/file-selector/-/file-selector-0.2.4.tgz"
+  "version" "0.2.4"
+  dependencies:
+    "tslib" "^2.0.3"
 
 "fill-range@^7.0.1":
   "integrity" "sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ=="
@@ -1655,6 +1667,11 @@
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   "version" "1.14.1"
 
+"tslib@^2.0.3":
+  "integrity" "sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ=="
+  "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz"
+  "version" "2.4.0"
+
 "tsutils@^3.21.0":
   "integrity" "sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA=="
   "resolved" "https://registry.npmjs.org/tsutils/-/tsutils-3.21.0.tgz"
@@ -1758,7 +1775,7 @@
   dependencies:
     "@volar/vue-typescript" "0.38.8"
 
-"vue@^2.6.14 || ^3.2.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.37", "vue@3.2.37", "vue@3.x.x":
+"vue@^2.6.14 || ^3.2.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.37", "vue@>=3", "vue@3.2.37", "vue@3.x.x":
   "integrity" "sha512-bOKEZxrm8Eh+fveCqS1/NkG/n6aMidsI6hahas7pa0w/l7jkbssJVsRhVDs07IdDq7h9KHswZOgItnwJAgtVtQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.37.tgz"
   "version" "3.2.37"
@@ -1768,6 +1785,14 @@
     "@vue/runtime-dom" "3.2.37"
     "@vue/server-renderer" "3.2.37"
     "@vue/shared" "3.2.37"
+
+"vue3-dropzone@^0.0.7":
+  "integrity" "sha512-aNUCEWcq/umC1rPLkpXBMcA8OIn17OKRKZxqIhVSBBhqt0F6ObAacKMC8noOTfHutVWzXhQU1qk8ynqCRfsEWA=="
+  "resolved" "https://registry.npmjs.org/vue3-dropzone/-/vue3-dropzone-0.0.7.tgz"
+  "version" "0.0.7"
+  dependencies:
+    "attr-accept" "^2.2.2"
+    "file-selector" "^0.2.4"
 
 "which-boxed-primitive@^1.0.2":
   "integrity" "sha512-bwZdv0AKLpplFY2KZRX6TvyuN7ojjr7lwkg6ml0roIy9YeuSr7JS372qlNW18UQYzgYK9ziGcerWqZOmEn9VNg=="
