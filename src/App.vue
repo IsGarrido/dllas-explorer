@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
+import CategoryToolView from "./views/CategoryToolView.vue";
 </script>
 
 <template>
@@ -15,10 +16,11 @@ import HelloWorld from "./components/HelloWorld.vue";
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
+      <CategoryToolView></CategoryToolView>
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/categorytool">Category Tool</RouterLink>
       </nav>
     </div>
   </header>
