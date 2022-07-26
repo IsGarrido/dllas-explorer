@@ -1,3 +1,6 @@
+import ExploreView from "@/views/ExploreView.vue";
+import ModelView from "@/views/ModelView.vue";
+import ModelSentenceView from "@/views/ModelSentenceView.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
@@ -8,6 +11,21 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
+    },
+    {
+      path: '/explore',
+      name: 'explore',
+      component: ExploreView
+    },
+    {
+      path: '/model/:modelname',
+      name: 'model',
+      component: ModelView
+    },
+    {
+      path: '/sentences/:modelname',
+      name: 'sentence',
+      component: ModelSentenceView
     },
     {
       path: "/categorytool",

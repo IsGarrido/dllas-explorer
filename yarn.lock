@@ -278,7 +278,7 @@
   dependencies:
     "@vue/shared" "3.2.37"
 
-"@vue/runtime-core@3.2.37":
+"@vue/runtime-core@3.2.37", "@vue/runtime-core@latest":
   "integrity" "sha512-JPcd9kFyEdXLl/i0ClS7lwgcs0QpUAWj+SKX2ZC3ANKi1U4DOtiEr6cRqFXsPwY5u1L9fAjkinIdB8Rz3FoYNQ=="
   "resolved" "https://registry.npmjs.org/@vue/runtime-core/-/runtime-core-3.2.37.tgz"
   "version" "3.2.37"
@@ -286,7 +286,7 @@
     "@vue/reactivity" "3.2.37"
     "@vue/shared" "3.2.37"
 
-"@vue/runtime-dom@3.2.37":
+"@vue/runtime-dom@3.2.37", "@vue/runtime-dom@latest":
   "integrity" "sha512-HimKdh9BepShW6YozwRKAYjYQWg9mQn63RGEiSswMbW+ssIht1MILYlVGkAGGQbkhSh31PCdoUcfiu4apXJoPw=="
   "resolved" "https://registry.npmjs.org/@vue/runtime-dom/-/runtime-dom-3.2.37.tgz"
   "version" "3.2.37"
@@ -434,6 +434,11 @@
     "ansi-styles" "^4.1.0"
     "supports-color" "^7.1.0"
 
+"chart.js@^3.8.2", "chart.js@=> ^3.1.0":
+  "integrity" "sha512-7rqSlHWMUKFyBDOJvmFGW2lxULtcwaPLegDjX/Nu5j6QybY+GCiQkEY+6cqHw62S5tcwXMD8Y+H5OBGoR7d+ZQ=="
+  "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-3.8.2.tgz"
+  "version" "3.8.2"
+
 "color-convert@^1.9.0":
   "integrity" "sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg=="
   "resolved" "https://registry.npmjs.org/color-convert/-/color-convert-1.9.3.tgz"
@@ -488,7 +493,7 @@
   "resolved" "https://registry.npmjs.org/cssesc/-/cssesc-3.0.0.tgz"
   "version" "3.0.0"
 
-"csstype@^2.6.8":
+"csstype@^2.6.8", "csstype@latest":
   "integrity" "sha512-/WwNkdXfckNgw6S5R125rrW8ez139lBHWouiBvX8dfMFtcn6V81REDqnH7+CRpRipfYlyU1CmOnOxrmGcFOjeA=="
   "resolved" "https://registry.npmjs.org/csstype/-/csstype-2.6.20.tgz"
   "version" "2.6.20"
@@ -1164,6 +1169,11 @@
     "pify" "^3.0.0"
     "strip-bom" "^3.0.0"
 
+"lodash-es@latest":
+  "integrity" "sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw=="
+  "resolved" "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz"
+  "version" "4.17.21"
+
 "lodash.merge@^4.6.2":
   "integrity" "sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ=="
   "resolved" "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz"
@@ -1743,6 +1753,16 @@
   optionalDependencies:
     "fsevents" "~2.3.2"
 
+"vue-chart-3@^3.1.8":
+  "integrity" "sha512-zX5ajjQi/PocEqLETlej3vp92q/tnI/Fvu2RVb++Kap8qOrXu6PXCpodi73BFrWzEGZIAnqoUxC3OIkRWD657g=="
+  "resolved" "https://registry.npmjs.org/vue-chart-3/-/vue-chart-3-3.1.8.tgz"
+  "version" "3.1.8"
+  dependencies:
+    "@vue/runtime-core" "latest"
+    "@vue/runtime-dom" "latest"
+    "csstype" "latest"
+    "lodash-es" "latest"
+
 "vue-demi@*":
   "integrity" "sha512-tO3K2bML3AwiHmVHeKCq6HLef2st4zBXIV5aEkoJl6HZ+gJWxWv2O8wLH8qrA3SX3lDoTDHNghLX1xZg83MXvw=="
   "resolved" "https://registry.npmjs.org/vue-demi/-/vue-demi-0.13.5.tgz"
@@ -1775,7 +1795,7 @@
   dependencies:
     "@volar/vue-typescript" "0.38.8"
 
-"vue@^2.6.14 || ^3.2.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.37", "vue@>=3", "vue@3.2.37", "vue@3.x.x":
+"vue@^2.6.14 || ^3.2.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.37", "vue@>= 3", "vue@>=3", "vue@3.2.37", "vue@3.x.x":
   "integrity" "sha512-bOKEZxrm8Eh+fveCqS1/NkG/n6aMidsI6hahas7pa0w/l7jkbssJVsRhVDs07IdDq7h9KHswZOgItnwJAgtVtQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.37.tgz"
   "version" "3.2.37"

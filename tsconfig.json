@@ -5,7 +5,9 @@
     "baseUrl": ".",
     "allowJs": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@data/*": ["./biastest/data/*"],
+      "@result/*": ["./biastest/result/*"],
     }
   },
 

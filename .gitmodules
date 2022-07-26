@@ -1,3 +1,6 @@
 [submodule "src/reluihelpers"]
 	path = src/reluihelpers
 	url = https://github.com/IsGarrido/reluihelpers
+[submodule "biastest"]
+	path = biastest
+	url = https://github.com/IsGarrido/biastest

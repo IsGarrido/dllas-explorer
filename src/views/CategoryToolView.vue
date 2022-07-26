@@ -42,7 +42,7 @@
 
   </div>
 
-  <hr>
+
 
   <div class="row" v-if="loaded">
     <div class="col">
