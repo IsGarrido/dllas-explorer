@@ -4,6 +4,8 @@ export const useIndexStore = defineStore('index', {
     state: () => {
         return {
             adjectives: [],
+            adjective_hashset: {},
+            
             words: [],
             other_words: [],
             filltemplate_results: [],
@@ -19,6 +21,7 @@ export const useIndexStore = defineStore('index', {
             categories: [],
             categories_result: [],
             category_lookup: {},
+            category_model_lookup: {},
 
             config: {
                 show_prc: true,
@@ -37,6 +40,10 @@ export const useIndexStore = defineStore('index', {
             this.other_words = other_words;
         },
         setAdjectives(adjectives) {
+            this.adjective_hashset = adjectives.reduce( function(map, item) {
+                map[item] = true;
+                return map;
+            }, {} );
             this.adjectives = adjectives;
         },
         setFillTemplateResult(filltemplate_results) {
@@ -73,6 +80,22 @@ export const useIndexStore = defineStore('index', {
         setCategoryResults(category_results) {
             this.categories = [...new Set(category_results.map(x => x.category))].filter(x => x !== "unknown");
             this.category_results = category_results;
+            this.category_model_lookup = category_results.reduce(function (map, row) {
+                if (!map[row.model])
+                    map[row.model] = {};
+
+                let model = map[row.model];
+                if (!model[row.dimension])
+                    model[row.dimension] = {}
+
+                let dimension = model[row.dimension];                
+                if(!dimension[row.category])
+                    dimension[row.category] = []
+
+                dimension[row.category].push(row);
+                return map;
+            }, {});
+
             this.category_lookup = category_results.reduce(function (map, item) {
                 if (!map[item.dimension]) {
                     map[item.dimension] = { [item.category]: item };

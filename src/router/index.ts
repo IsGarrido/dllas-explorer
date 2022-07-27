@@ -3,6 +3,7 @@ import ModelView from "@/views/ModelView.vue";
 import ModelSentenceView from "@/views/ModelSentenceView.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import ModelCategoryView from "@/views/ModelCategoryView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,9 +24,14 @@ const router = createRouter({
       component: ModelView
     },
     {
-      path: '/sentences/:modelname',
-      name: 'sentence',
+      path: '/model/sentences/:modelname',
+      name: 'model-sentence',
       component: ModelSentenceView
+    },
+    {
+      path: '/model/categories/:modelname',
+      name: 'model-categories',
+      component: ModelCategoryView
     },
     {
       path: "/categorytool",

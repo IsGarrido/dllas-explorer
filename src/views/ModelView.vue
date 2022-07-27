@@ -2,9 +2,10 @@
 
 <div class="row">
     <div class="col">
-        <h3>Model {{ modelname }}</h3>
+        <h2>Model {{ modelname }}</h2>
     </div>
 
+    <h4 class="mt-3">Model summary</h4>
     <!-- model -->
     <div class="row">
       <div class="col">
@@ -15,13 +16,15 @@
     <div class="row">
       <div class="col">
         <b-button variant="link" @click="OnExploreTemplatesClicked">Explore model templates</b-button>
+        <b-button variant="link" @click="OnExploreCategoriesClicked">Explore model categories</b-button>
       </div>
     </div>
 
     <!-- dimensions -->
+    <h4 class="mt-3"> Dimensions </h4>
     <div class="row">
       <div class="col" v-for="(dimension, dixd) in model_dimensions" :key="didx">
-        <h4> {{ dimension.dimension }} </h4>
+        <h5> {{ dimension.dimension }} </h5>
         <SummaryCard :item="dimension"></SummaryCard>
       </div>
     </div>
@@ -47,6 +50,8 @@ import SummaryCard from './data/SummaryCard.vue'
 
 export default {
   props: [],
+  components: {
+  },
   created() {
     this.loaded = true;
   },
@@ -61,10 +66,11 @@ export default {
 },
   methods: {
     OnExploreTemplatesClicked(){
-      this.$router.push({ name: 'sentence', params: { model: this.modelname } })
-
+      this.$router.push({ name: 'model-sentence', params: { model: this.modelname } })
+    },
+    OnExploreCategoriesClicked(){
+      this.$router.push({ name: 'model-categories', params: { model: this.modelname } })
     }
-
   },
   computed: {
     ...mapState(useIndexStore, [
@@ -78,6 +84,7 @@ export default {
       'category_lookup',
       'category_results',
       'categories',
+      'category_model_lookup',
 
       'template_lookup'
     ]),

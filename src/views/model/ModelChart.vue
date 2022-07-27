@@ -58,7 +58,6 @@ export default {
           let category = e.chart.data.labels[dataIndex];
           console.log("In click", dimension, category, value);
           this.emit("click", { dimension, category, value });
-          debugger;
         }
     };
 
