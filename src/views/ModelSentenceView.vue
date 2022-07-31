@@ -18,9 +18,8 @@
   <div class="row" v-if="loaded">
 
     <div class="col" v-for="(dimension, didx) in dimensions" :key="didx">
-      <h4>{{ dimension }} <small>({{ getSentence(dimension, selectedIndex) }})</small></h4>
+      <h5>{{ dimension }} <small>({{ getSentence(dimension, selectedIndex) }})</small></h5>
         <DataTable :items="getSentences(dimension, selectedIndex)" :remove_cols="table_remove_cols" :transforms="table_transforms" :key="selectedIndex" :shadow_rows="table_shadow_rows"></DataTable>
-
     </div>
 
   </div>
