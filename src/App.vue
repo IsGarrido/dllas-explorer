@@ -21,24 +21,27 @@ import { RouterLink, RouterView } from "vue-router";
 import Sidebar from "./reluihelpers/template/Sidebar.vue";
 import { useIndexStore } from "./stores";
 
-import { words } from "@result/Spanish_Genre/FillTemplate/FillTemplate"
-import { other_words } from "@result/Spanish_Genre/FillTemplate/FillTemplate"
-import { data } from "@result/Spanish_Genre/FillTemplate/FillTemplate"
+import { words, data, models, sentences } from "@result/Spanish_Genre/FillTemplate/FillTemplate"
 import adjectives from "@data/Adjectives/spanish_adjectives"
 
 import ModelResults from "@result/Spanish_Genre/EvaluateCategories/ByModel"
 import DimensionResults from "@result/Spanish_Genre/EvaluateCategories/ByDimension"
 import CategoryResults from "@result/Spanish_Genre/EvaluateCategories/ByCategory"
+import SentenceStatistics from "@result/Spanish_Genre/EvaluateCategories/SentenceStatistics"
 
 export default {
   created(){
     const indexStore = useIndexStore();
     indexStore.setWords(words);
-    indexStore.setOthersWords(other_words);
     indexStore.setAdjectives(adjectives);
+    indexStore.setModelNames(models);
+    indexStore.setSentenceNames(sentences);
+    indexStore.setSentenceStatistics(SentenceStatistics);
+
+    indexStore.setDimensionResults(DimensionResults);
+
     indexStore.setFillTemplateResult(data);
     indexStore.setModelResults(ModelResults);
-    indexStore.setDimensionResults(DimensionResults);
     indexStore.setCategoryResults(CategoryResults);
 
     this.loaded = true;
@@ -54,6 +57,10 @@ export default {
         {
           label: 'Explore models',
           path: '/explore'
+        },
+        {
+          label: 'Explore templates',
+          path: '/sentences-statistics'
         },
         {
           type: 'separator'

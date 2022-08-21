@@ -6,7 +6,7 @@
 
         <div class="row">
           <span v-for="(model, midx) in model_results" :key="midx">
-            <RouterLink class="nav-link" :to="{ name: 'model', params: {modelname: model.model } }">{{ model.model }} ({{ format(model.adjetive_proportion) }} adjectives)</RouterLink>
+            <RouterLink class="nav-link" :to="{ name: 'model', params: {modelname: model.name } }">{{ model.name }} ({{ format(model.adj_prop) }} adjectives)</RouterLink>
           </span>
         </div>
     </div>

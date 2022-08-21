@@ -6,8 +6,8 @@
     "allowJs": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@data/*": ["./biastest/data/*"],
-      "@result/*": ["./biastest/result/*"],
+      "@data/*": ["./biastest/assets/data*"],
+      "@result/*": ["./biastest/assets/result/*"],
     }
   },
 

@@ -4,7 +4,7 @@
 
 <script>
 export default {
-    props: ['items', 'remove_cols', 'transforms', 'shadow_rows'],
+    props: ['items', 'remove_cols', 'transforms', 'shadow_rows', 'sort_by', 'sort_by_desc'],
     created() {
         let copy = JSON.parse(JSON.stringify(this.items));
 
@@ -39,6 +39,9 @@ export default {
 
 
         this.rows = copy;
+        // if(this.sort_by) this.rows.sort( (a,b) => a[this.sort_by] < b[this.sort_by] ? -1 : 1)
+        // if(this.sort_by_desc) this.rows.sort( (a,b) => a[this.sort_by] > b[this.sort_by] ? -1 : -1)
+        
         this.fields = Object.keys(this.rows[0]).filter(x => x[0] != '_').map(field => {
             return {
                 key: field,

@@ -1,14 +1,13 @@
 <template>
 
-  <RouterLink class="btn btn-link" :to="{ name: 'model', params: {modelname: modelname } }">&lt; Back </RouterLink>
-
   <div class="row">
-    <h2> Categories for {{ modelname }} </h2>
+    <h2> Statistics for the chosen templates </h2>
     <div class="col">
         <DataTable
-          :items="categories_table_data"
+          :items="sentence_statistics"
           :remove_cols="table_remove_cols"
           :transforms="table_transforms"
+          sort_by_desc="adj_prop"
         ></DataTable>
     </div>
 
@@ -19,7 +18,7 @@
 <script>
 import NumberHelper from '@/reluihelpers/mixin/NumberHelper'
 import { useIndexStore } from '@/stores'
-import { mapState, mapStores } from 'pinia'
+import { mapState } from 'pinia'
 import DataTable from './data/DataTable.vue'
 
 export default {
@@ -29,8 +28,11 @@ export default {
   data() {
     return {
       selectedIndex: 0,
-      table_remove_cols: ['category', 'model', 'count', 'adj_cnt'],
+      table_remove_cols: ['rsv_sum', 'count'],
       table_transforms: {
+        'labels': (x, col) => {
+            return x.join("\n");
+        },
         'rsv_sum': (x, col) => {
           return this.format(x, 0, col)
         },
@@ -66,32 +68,16 @@ export default {
     DataTable
   },
   methods: {
-    getSentences(dimension, index){
-      let sentences = Object.values(this.sentences_lookup[dimension]);
-      return sentences[index];
-    },
-    getSentence(dimension, index){
-      let sentences = Object.keys(this.sentences_lookup[dimension]);
-      return sentences[index];
-    },
     format(x, dec, col){
       return NumberHelper.format(x, dec);
     }
-
   },
   computed: {
     ...mapState(useIndexStore, [
       'config',
       'dimensions',
-      'category_model_lookup'
-    ]),
-    modelname() {
-      return this.$route.params.modelname;
-    },
-    categories_table_data(){
-      return Object.values(this.category_model_lookup[this.modelname]).flatMap( dimension_data => Object.values(dimension_data) ).flatMap( y => y);
-    }
-
+      'sentence_statistics'
+    ])
   }
 
 }

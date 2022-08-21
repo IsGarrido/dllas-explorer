@@ -3,7 +3,7 @@
         <li><b>Count:</b> {{item.count }}</li>
         <li><b>Total RSV:</b> {{item.rsv_sum }} <small> ( {{ format_rsv(item.rsv_min) }} - {{ format_rsv(item.rsv_max) }} , mean: {{ format_rsv(item.rsv_mean) }} )</small></li>
         <li><b>Total Score:</b> {{ format_score(item.score_sum) }} <small> ( {{ format_score(item.score_min) }} - {{ format_score(item.score_max) }} , mean: {{ format_score(item.score_mean) }} )</small></li>
-        <li><b>Adjective count:</b> {{ item.adjective_count }} <small> ( {{ format_prc(item.adjetive_proportion) }} )</small></li>
+        <li><b>Adjective count:</b> {{ item.adj_cnt }} <small> ( {{ format_prc(item.adj_prop) }} )</small></li>
     </ul>
 </template>
 <script>

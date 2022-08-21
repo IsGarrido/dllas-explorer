@@ -23,7 +23,7 @@
     <!-- dimensions -->
     <h4 class="mt-3"> Dimensions </h4>
     <div class="row">
-      <div class="col" v-for="(dimension, dixd) in model_dimensions" :key="didx">
+      <div class="col" v-for="(dimension, didx) in model_dimensions" :key="didx">
         <h5> {{ dimension.dimension }} </h5>
         <SummaryCard :item="dimension"></SummaryCard>
       </div>
@@ -92,10 +92,10 @@ export default {
       return this.$route.params.modelname;
     },
     model_summary(){
-      return this.model_results.find( x => x.model == this.modelname );
+      return this.model_results.find( x => x.name == this.modelname );
     },
     model_dimensions(){
-      return this.dimension_results.filter( x => x.model == this.modelname );
+      return this.dimension_results.filter( x => x.name == this.modelname );
     },
     
     chart_data(){
