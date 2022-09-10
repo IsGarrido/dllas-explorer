@@ -3,8 +3,6 @@ import { defineStore } from 'pinia';
 export const useIndexStore = defineStore('index', {
     state: () => {
         return {
-            adjectives: [],
-            adjective_hashset: {},
             
             words: [],
             filltemplate_results: [],
@@ -37,13 +35,6 @@ export const useIndexStore = defineStore('index', {
         },
         setWords(words) {
             this.words = words;
-        },
-        setAdjectives(adjectives) {
-            this.adjective_hashset = adjectives.reduce( function(map, item) {
-                map[item] = true;
-                return map;
-            }, {} );
-            this.adjectives = adjectives;
         },
         setModelNames(model_names){
             this.model_names = model_names;

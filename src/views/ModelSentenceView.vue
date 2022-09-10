@@ -30,7 +30,6 @@
         :remove_cols="table_remove_cols"
         :transforms="table_transforms"
         :key="selectedIndex"
-        :shadow_rows="table_shadow_rows"
       ></DataTable>
     </div>
   </div>
@@ -63,11 +62,6 @@ export default {
           }
         }
       },
-      table_shadow_rows: {
-        'word': (x) => {
-          return this.adjective_hashset[x] === undefined
-        }
-      }
     }
   },
   components: {

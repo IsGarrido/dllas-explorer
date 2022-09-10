@@ -22,7 +22,6 @@ import { useIndexStore } from "./stores";
 import { useSentenceStore } from "./stores/sentence";
 
 import { words, data, models, sentences } from "@result/Spanish_Genre/FillTemplate/FillTemplate"
-import adjectives from "@data/Adjectives/spanish_adjectives"
 
 import ModelResults from "@result/Spanish_Genre/EvaluateCategories/ByModel"
 import DimensionResults from "@result/Spanish_Genre/EvaluateCategories/ByDimension"
@@ -37,7 +36,6 @@ export default {
     const sentenceStore = useSentenceStore();
 
     indexStore.setWords(words);
-    indexStore.setAdjectives(adjectives);
     indexStore.setModelNames(models);
     indexStore.setSentenceNames(sentences);
     indexStore.setDimensionResults(DimensionResults);
