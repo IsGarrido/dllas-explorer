@@ -51,14 +51,6 @@ export const useIndexStore = defineStore('index', {
         setSentenceNames(sentence_names){
             this.sentence_names = sentence_names;
         },
-        setSentenceStatistics(sentence_statistics){
-            let res = sentence_statistics.map( item => {
-                let dimensions = Object.keys(this.sentence_names);
-                item.labels = dimensions.map( dimension => this.sentence_names[dimension][item.sentence]);
-                return item;
-            });
-            this.sentence_statistics = res;
-        },
         setFillTemplateResult(filltemplate_results) {
             this.filltemplate_results = filltemplate_results;
             this.template_lookup = filltemplate_results.reduce((map, row) => {

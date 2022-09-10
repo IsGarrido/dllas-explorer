@@ -1,8 +1,53 @@
 <template>
 
-  <div class="row" v-show="!loaded">
+  <!-- Instrucciones -->
+  <div class="row">
     <div class="col">
-      <DropZoneVue @select="onFileSelected"></DropZoneVue>
+      <div class="alert alert-info">
+
+        <p v-if="!loaded && !preloadedAdjectives">Either:
+          <ul>
+            <li>Drag and Drop your Adjectives.json files inside Adjectives.</li>
+            <li>Drag your pre-categorized adjectives into Filled.</li>
+          </ul>
+        </p>
+
+        <p v-if="loaded && !preloadedAdjectives">
+          Now you can start adding categories in the new category input. You may want to add an unknown category.
+        </p>
+
+        <p v-if="preloadedAdjectives && !loaded">
+          Now you can start add your Adjectives.json file bellow.
+        </p>
+
+        <p v-if="loaded && !firstUncategorizedWord">
+          You have already categorized everything, click <b>Save to file</b> now.
+        </p>
+
+        <p v-if="loaded && firstUncategorizedWord">
+          You can start adding categories now.
+        </p>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col" v-show="!loaded">
+      <h2>Adjective.json <small>Drop here your </small></h2>
+    </div>
+    <div class="col" v-show="!loaded && !preloadedAdjectives">
+      <h2>Load Pre-Categorized adjectives <small>Drop here pre-categorized adjectives</small></h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col" v-show="!loaded">
+      <DropZoneVue @select="onAdjectivesJsonFileSelected"></DropZoneVue>
+    </div>
+
+    <div class="col" v-show="!loaded && !preloadedAdjectives">
+      <DropZoneVue @select="onLoadPrecategorizedAdjectives"></DropZoneVue>
     </div>
   </div>
 
@@ -15,7 +60,7 @@
       </b-form>
 
     </div>
-    
+
     <div class="col-2">
       <b-form @submit="addCategory">
         <b-form-group label="_" label-class="invisible">
@@ -42,21 +87,28 @@
 
   </div>
 
+  <div class="row" v-if="firstUncategorizedWord && columns.length > 0">
+    <div class="col text-center">
+      <h1>
+        <small style="display: block; font-size: 20px; color: grey">Choose a category for the word:</small>
+        {{ firstUncategorizedWord }}
+      </h1>
+    </div>
+  </div>
 
-
-  <div class="row" v-if="loaded">
+  <div class="row-fluid" v-if="loaded">
     <div class="col">
-      <div class="table-responsive">
+      <div class="table-responsivex">
 
         <b-table-simple :hover="true" :outlined="true" :small="true" :striped="true" :bordered="true" responsive>
 
           <!-- head -->
           <b-thead>
             <b-tr>
-              <b-th :key="cidx" class="p-1" v-for="(category, cidx) in categories" @click="setCategory(category)">
+              <b-th :key="cidx" class="p-1 highlight" v-for="(category, cidx) in columns" @click="setCategory(category)">
                 {{ category }}
                 <small> {{ newFile[category].length }}</small>
-                <a v-if="category !== noCategory" class="btn btn-link float-end p-0"> (Move) </a>
+                <a class="btn btn-link float-end p-0"> (Move) </a>
 
               </b-th>
             </b-tr>
@@ -65,9 +117,8 @@
           <!-- body -->
           <b-tbody>
             <b-tr v-for="(_, index) in maxLength">
-              <b-td v-for="(cat, cidx) in categories" :key="cat + '_' + cidx">
+              <b-td v-for="(cat, cidx) in columns" :key="cat + '_' + cidx">
                 {{ newFile[cat][index] ?? '' }}
-                <span v-if="index === 0 && cat === noCategory">⬅</span>
               </b-td>
             </b-tr>
           </b-tbody>
@@ -99,15 +150,18 @@ export default {
   data() {
     return {
       // const
-      noCategory: " - No category - ",
+      unknownCategory: "unknown",
+      noCategory: "- No category -",
 
       // view
       newCategory: "",
       loaded: false,
+      preloadedAdjectives: false,
       lastSave: new Date(),
 
       // data
       categories: [],
+      notFoundAdjectives: [],
       newFile: {},
     }
   },
@@ -115,32 +169,70 @@ export default {
     DropZoneVue
   },
   methods: {
+    onAdjectivesJsonFileSelected($event){
+      this.notFoundAdjectives = [];
+      if(this.preloadedAdjectives){
+        this.onFileSelected($event);
+      } else {
+        this.onAdjectiveFileSelected($event);
+      }
+    },
+    onAdjectiveFileSelected($event){
+      let adjectives = JSON.parse($event);
+
+      this.newCategory = this.noCategory;
+      this.addCategory();
+
+      let set = new Set(Object.values(this.newFile).flatMap(x => x));
+
+      for(let adjective of adjectives){
+        if(!set.has(adjective)){
+          this.notFoundAdjectives.push(adjective);
+        }
+      }
+      this.loaded = true;
+    },
     onFileSelected($event) {
+      let adjectives = JSON.parse($event);
+
+      this.newCategory = this.noCategory;
+      this.addCategory();
+      this.newFile[this.noCategory] = adjectives;
+
+      this.loaded = true;
+    },
+    onLoadPrecategorizedAdjectives($event) {
       let file = JSON.parse($event);
 
       this.newCategory = this.noCategory;
       this.addCategory();
-      this.newFile[this.noCategory] = file.words;
 
-      file.categories.forEach(cat => {
+      Object.entries(file).forEach(entry => {
+        let cat = entry[0];
+        let values = entry[1];
+
         this.newCategory = cat;
-        this.addCategory();
+        this.addCategoryWithValues(cat, values);
       });
 
-      this.loaded = true;
+      this.loaded = false;
+      this.preloadedAdjectives = true;
+    },
+    addCategoryWithValues(cat, values){
+      this.categories.push(cat);
+      this.newFile[cat] = [...values];
     },
     addCategory($event) {
       let cat = this.newCategory;
-      if (this.categories.findIndex(x => cat === x) != -1)
+      if (this.categories.findIndex(x => cat === x) !== -1)
         return;
-      this.categories.push(cat);
+
       this.newFile[cat] = [];
+      this.categories = [...this.categories, cat];
       this.newCategory = "";
     },
     setCategory(category) {
-      if (category === this.noCategory)
-        return;
-      let word = this.newFile[this.noCategory].shift();
+      let word = this.notFoundAdjectives.shift();
       this.newFile[category] = [...this.newFile[category], word];
       setTimeout(() => this.save(), 1);
     },
@@ -159,8 +251,10 @@ export default {
       this.categories = this.loadLocal("categories");
       this.newFile = this.loadLocal("newFile");
     },
-    saveToFile(){
-      FileHelper.saveToFile("dllas-categorizedwords.json", JSON.stringify(this.newFile) );
+    saveToFile() {
+      if(this.notFoundAdjectives && this.notFoundAdjectives.length > 0)
+        this.newFile[this.unknownCategory] = this.notFoundAdjectives;
+      FileHelper.saveToFile("dllas-categorizedwords.json", JSON.stringify(this.newFile));
     }
 
 
@@ -171,10 +265,22 @@ export default {
       if (res > 30)
         return 30;
       return res;
+    },
+    columns(){
+      return this.categories.filter( x => x !== this.noCategory);
+    },
+    firstUncategorizedWord(){
+      if(this.notFoundAdjectives.length === 0)
+        return null;
+      return this.notFoundAdjectives[0];
     }
   }
 
 }
 </script>
-
-
+<style scoped>
+.highlight:hover {
+  background-color: aliceblue;
+  cursor: pointer;
+}
+</style>
