@@ -1,10 +1,10 @@
 <template>
 
-  <div class="container-fluid min-vh-100 d-flex flex-column g-0" v-if="loaded">
+  <div class="container-fluid min-vh-100 d-flex flex-column g-0" v-if="state.loaded">
 
     <div class="row g-0 flex-grow-1">
       <div class="col-2 border">
-        <Sidebar label="Dllas" :entries="sidebar"></Sidebar>
+        <Sidebar label="Dllas" :entries="state.sidebar"></Sidebar>
       </div>
       <div class="col-md-10 border p-2 pt-4">
         <div class="container">
@@ -16,74 +16,72 @@
 
 </template>
 
-<script>
-import Sidebar from "./reluihelpers/template/Sidebar.vue";
+<script setup lang="ts">
+
 import { useIndexStore } from "./stores";
 import { useSentenceStore } from "./stores/sentence";
 
-import { words, data, models, sentences } from "@result/Spanish_Genre/FillTemplate/FillTemplate"
+import SpanishGenre10Experiment from "@/schema/spanish_genre_10";
+import Sidebar from "./reluihelpers/template/Sidebar.vue";
+import { reactive } from "vue";
+import { RouterView } from "vue-router";
 
-import ModelResults from "@result/Spanish_Genre/EvaluateCategories/ByModel"
-import DimensionResults from "@result/Spanish_Genre/EvaluateCategories/ByDimension"
-import CategoryResults from "@result/Spanish_Genre/EvaluateCategories/ByCategory"
-import SentenceStatistics from "@result/Spanish_Genre/EvaluateCategories/SentenceStatistics"
-import SentenceDimensionStatistics from "@result/Spanish_Genre/EvaluateCategories/SentenceAndDimensionStatistics"
+const indexStore = useIndexStore();
+const sentenceStore = useSentenceStore();
 
-export default {
-  created(){
-
-    const indexStore = useIndexStore();
-    const sentenceStore = useSentenceStore();
-
-    indexStore.setWords(words);
-    indexStore.setModelNames(models);
-    indexStore.setSentenceNames(sentences);
-    indexStore.setDimensionResults(DimensionResults);
-    indexStore.setFillTemplateResult(data);
-    indexStore.setModelResults(ModelResults);
-    indexStore.setCategoryResults(CategoryResults);
-
-    sentenceStore.setSentenceNames(sentences);
-    sentenceStore.setSentenceStatistics(SentenceStatistics);
-    sentenceStore.setSentenceDimensionStatistics(SentenceDimensionStatistics);
-    sentenceStore.setDimensions(DimensionResults);
-
-
-    this.loaded = true;
-  },
-  data(){
-    return {
-      loaded: false,
-      sidebar: [
-        {
-          label: 'Home',
-          path: '/'
-        },
-        {
-          label: 'Explore models',
-          path: '/explore'
-        },
-        {
-          label: 'Explore templates',
-          path: '/sentences-statistics'
-        },
-        {
-          type: 'separator'
-        },
-        {
-          label: 'Category Tool',
-          path: '/categorytool'
-        }
-      ]
-
+const state = reactive({
+  loaded: false,
+  sidebar: [
+    {
+      label: 'Home',
+      path: '/'
+    },
+    {
+      label: 'Explore models',
+      path: '/explore'
+    },
+    {
+      label: 'Explore templates',
+      path: '/sentences-statistics'
+    },
+    {
+      type: 'separator'
+    },
+    {
+      label: 'Category Tool',
+      path: '/categorytool'
     }
-  },
-  components: { Sidebar }
+  ]
+});
+
+const load_experiment = (dto: { [key: string]: any }): void => {
+
+  const { words, data, models, sentences, ModelResults, DimensionResults, CategoryResults, SentenceStatistics, SentenceDimensionStatistics } = dto;
+
+  indexStore.setWords(words);
+  indexStore.setModelNames(models);
+  indexStore.setSentenceNames(sentences);
+  indexStore.setDimensionResults(DimensionResults);
+  indexStore.setFillTemplateResult(data);
+  indexStore.setModelResults(ModelResults);
+  indexStore.setCategoryResults(CategoryResults);
+
+  sentenceStore.setSentenceNames(sentences);
+  sentenceStore.setSentenceStatistics(SentenceStatistics);
+  sentenceStore.setSentenceDimensionStatistics(SentenceDimensionStatistics);
+  sentenceStore.setDimensions(DimensionResults);
+
+  state.loaded = true;
 }
+
+load_experiment(SpanishGenre10Experiment);
+
 </script>
+
 <style>
 .invisible {
   color: white;
-  user-select: none;;
+  user-select: none;
+  ;
 }
 </style>

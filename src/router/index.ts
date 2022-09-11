@@ -2,9 +2,10 @@ import ExploreView from "@/views/ExploreView.vue";
 import ModelView from "@/views/ModelView.vue";
 import ModelSentenceView from "@/views/ModelSentenceView.vue";
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
 import ModelCategoryView from "@/views/ModelCategoryView.vue";
 import SentenceStatisticsVue from "@/views/SentenceStatistics.vue";
+import SelectExperimentVue from "@/views/SelectExperiment.vue";
+import ModelCompareDimensionsViewVue from "@/views/ModelCompareDimensionsView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,7 +13,7 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: HomeView,
+      component: SelectExperimentVue,
     },
     {
       path: '/explore',
@@ -38,6 +39,16 @@ const router = createRouter({
       path: '/model/categories/:modelname',
       name: 'model-categories',
       component: ModelCategoryView
+    },
+    {
+      path: '/model/compare-two-dimensions/:modelname/:dimension1/:dimension2',
+      name: 'model-compare-two-dimensions',
+      component: ModelCompareDimensionsViewVue
+    },
+    {
+      path: '/model/compare-dimensions/:modelname',
+      name: 'model-compare-dimensions',
+      component: ModelCompareDimensionsViewVue
     },
     {
       path: "/categorytool",

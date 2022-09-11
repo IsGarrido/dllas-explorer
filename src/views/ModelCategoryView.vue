@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       selectedIndex: 0,
-      table_remove_cols: ['category', 'model', 'count', 'adj_cnt'],
+      table_remove_cols: [ 'model', 'count', 'adj_cnt'],
       table_transforms: {
         'rsv_sum': (x, col) => {
           return this.format(x, 0, col)

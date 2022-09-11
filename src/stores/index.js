@@ -19,6 +19,7 @@ export const useIndexStore = defineStore('index', {
             categories_result: [],
             category_lookup: {},
             category_model_lookup: {},
+            dimension_model_lookup: {},
 
             sentence_names: [],
             sentence_statistics: [],
@@ -84,6 +85,7 @@ export const useIndexStore = defineStore('index', {
         setCategoryResults(category_results) {
             this.categories = [...new Set(category_results.map(x => x.category))].filter(x => x !== "unknown");
             this.category_results = category_results;
+
             this.category_model_lookup = category_results.reduce( (map, row) => {
                 let model_name = this.model_names[row.model];
                 if (!map[model_name])
@@ -97,9 +99,28 @@ export const useIndexStore = defineStore('index', {
                 if(!dimension[row.category])
                     dimension[row.category] = []
 
-                dimension[row.category].push(row);
+                dimension[row.category].push(row); // MAL
                 return map;
             }, {});
+
+            this.dimension_model_lookup = category_results.reduce( (map, row) => {
+                let model_name = this.model_names[row.model];
+                if (!map[model_name])
+                    map[model_name] = {};
+
+                let model = map[model_name];
+                if (!model[row.category])
+                    model[row.category] = {}
+
+                let category = model[row.category];                
+                if(!category[row.dimension])
+                    category[row.dimension] = []
+
+                category[row.dimension] = row;
+                return map;
+            }, {});
+
+            debugger;
 
             this.category_lookup = category_results.reduce(function (map, item) {
                 if (!map[item.dimension]) {

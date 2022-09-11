@@ -17,6 +17,7 @@
       <div class="col">
         <b-button variant="link" @click="OnExploreTemplatesClicked">Explore model templates</b-button>
         <b-button variant="link" @click="OnExploreCategoriesClicked">Explore model categories</b-button>
+        <b-button variant="link" @click="OnCompareDimensionsClicked">Compare dimensions</b-button>
       </div>
     </div>
 
@@ -70,6 +71,9 @@ export default {
     },
     OnExploreCategoriesClicked(){
       this.$router.push({ name: 'model-categories', params: { model: this.modelname } })
+    },
+    OnCompareDimensionsClicked(){
+      this.$router.push({ name: 'model-compare-dimensions', params: { model: this.modelname } })
     }
   },
   computed: {

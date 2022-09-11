@@ -1,5 +1,10 @@
 <template>
-    <b-table striped hover :items="rows" :fields="fields" v-if="loaded"></b-table>
+    <div v-if="loaded">
+        <b-table striped hover :items="rows" :fields="fields" ></b-table>
+        <a @click="dump = !dump">D</a>
+        <pre v-if="dump"> {{ fields }} </pre>
+        <pre v-if="dump"> {{ rows }} </pre>
+    </div>
 </template>
 
 <script>
@@ -55,7 +60,8 @@ export default {
         return {
             loaded: false,
             rows: [],
-            fields: []
+            fields: [],
+            dump: false
         }
     }
 }

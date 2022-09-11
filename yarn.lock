@@ -3255,6 +3255,11 @@
   dependencies:
     "builtins" "^5.0.0"
 
+"vite-plugin-dynamic-import@^1.2.2":
+  "integrity" "sha512-50m5Whh9ZLzJouIcHhSzlcrieXx3YUiWAel4twcaNvZIlV9AbRud8e1qAunzpHZKTKPwujhkZps3O6XwebRGLg=="
+  "resolved" "https://registry.npmjs.org/vite-plugin-dynamic-import/-/vite-plugin-dynamic-import-1.2.2.tgz"
+  "version" "1.2.2"
+
 "vite@^3.0.0", "vite@^3.1.0":
   "integrity" "sha512-YBg3dUicDpDWFCGttmvMbVyS9ydjntwEjwXRj2KBFwSB8SxmGcudo1yb8FW5+M/G86aS8x828ujnzUVdsLjs9g=="
   "resolved" "https://registry.npmjs.org/vite/-/vite-3.1.0.tgz"
