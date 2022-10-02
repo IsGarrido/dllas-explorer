@@ -5,7 +5,7 @@
     <div class="row g-0 flex-grow-1">
       <div class="col-2 border">
         <Sidebar label="Dllas" :entries="state.sidebar">
-          <span>Selected experiment: {{ indexStore.experiment }}</span>
+          <span>Selected a experiment: {{ indexStore.experiment }}</span>
         </Sidebar>
       </div>
       <div class="col-md-10 border p-2 pt-4">
