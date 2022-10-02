@@ -21,8 +21,6 @@
 <script setup lang="ts">
 
 import { useIndexStore } from "./stores";
-import { useSentenceStore } from "./stores/sentence";
-import { useModelCategoryStore } from "@/stores/modelcategory";
 import DataService from "./service/DataService";
 
 import SpanishGenre10Experiment from "@/schema/spanish_genre_10";
@@ -30,9 +28,6 @@ import Sidebar from "./reluihelpers/template/Sidebar.vue";
 import { reactive } from "vue";
 import { RouterView } from "vue-router";
 
-// const indexStore = useIndexStore();
-const sentenceStore = useSentenceStore();
-const modelCategoryStore = useModelCategoryStore();
 const state = reactive({
   loaded: false,
   sidebar: [
@@ -73,6 +68,5 @@ state.loaded = true;
 .invisible {
   color: white;
   user-select: none;
-  ;
 }
 </style>
