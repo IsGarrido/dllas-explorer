@@ -4,7 +4,9 @@
 
     <div class="row g-0 flex-grow-1">
       <div class="col-2 border">
-        <Sidebar label="Dllas" :entries="state.sidebar"></Sidebar>
+        <Sidebar label="Dllas" :entries="state.sidebar">
+          <span>Selected experiment: {{ indexStore.experiment }}</span>
+        </Sidebar>
       </div>
       <div class="col-md-10 border p-2 pt-4">
         <div class="container">
@@ -61,8 +63,9 @@ const state = reactive({
 
 const load_experiment = (dto: { [key: string]: any }): void => {
 
-  const { words, data, models, sentences, ModelResults, DimensionResults, CategoryResults, SentenceStatistics, SentenceDimensionStatistics, ModelCategoryStatistics, ModelCategoryDimensionStatistics } = dto;
+  const { label, words, data, models, sentences, ModelResults, DimensionResults, CategoryResults, SentenceStatistics, SentenceDimensionStatistics, ModelCategoryStatistics, ModelCategoryDimensionStatistics } = dto;
 
+  indexStore.setExperiment(label);
   indexStore.setWords(words);
   indexStore.setModelNames(models);
   indexStore.setSentenceNames(sentences);

@@ -3,6 +3,7 @@ import { defineStore } from 'pinia';
 export const useIndexStore = defineStore('index', {
     state: () => {
         return {
+            experiment: '',
             
             words: [],
             filltemplate_results: [],
@@ -31,6 +32,9 @@ export const useIndexStore = defineStore('index', {
         }
     },
     actions: {
+        setExperiment(label){
+            this.experiment = label;
+        },
         setCategories(categories) {
             this.categories = categories;
         },

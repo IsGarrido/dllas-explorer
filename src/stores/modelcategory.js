@@ -26,29 +26,29 @@ export const useModelCategoryStore = defineStore('modelcategory', {
     actions: {
         setCategoryStatistics(statistics) {
 
-            let byModel = groupBy(statistics, 'model');
-            for( let [key, val] of Object.entries(byModel) ){
-                let byCategory = groupBy(val, 'category');
-                byModel[key] = withoutArray(byCategory);
+            let byCategory = groupBy(statistics, 'category');
+            for( let [key, val] of Object.entries(byCategory) ){
+                let byModel = groupBy(val, 'model');
+                byCategory[key] = withoutArray(byModel);
             }
-            this.categories_statistics = byModel;
+            this.categories_statistics = byCategory;
         },
         setCategoryModelStatistics(statistic_by_dimension) {
 
             this.dimensions = Object.keys(statistic_by_dimension);
 
             let all = Object.values(statistic_by_dimension).flatMap( x => x);
-            let byModel = groupBy(all, 'model');
-            for( let [key, val] of Object.entries(byModel) ){
-                let byCategory = groupBy(val, 'category');
-                byModel[key] = byCategory;
+            let byCategory = groupBy(all, 'category');
+            for( let [key, val] of Object.entries(byCategory) ){
+                let byDimension = groupBy(val, 'dimension');
+                byCategory[key] = byDimension;
 
-                for( let [keyCat, valCal] of Object.entries(byCategory) ){
-                    let byDimension = groupBy(valCal, 'dimension');
-                    byModel[key][keyCat] = withoutArray(byDimension);
+                for( let [keyDim, valDim] of Object.entries(byDimension) ){
+                    let byModel = groupBy(valDim, 'model');
+                    byCategory[key][keyDim] = withoutArray(byModel);
                 }
             }
-            this.categories_model_statistics = byModel;
+            this.categories_model_statistics = byCategory;
 
         },
     },
