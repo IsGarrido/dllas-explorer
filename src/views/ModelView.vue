@@ -86,11 +86,7 @@ export default {
       'dimensions',
       
       'category_lookup',
-      'category_results',
       'categories',
-      'category_model_lookup',
-
-      'template_lookup'
     ]),
     modelname(){
       return this.$route.params.modelname;

@@ -89,7 +89,7 @@ export default {
       return this.$route.params.modelname;
     },
     categories_table_data(){
-      return Object.values(this.category_model_lookup[this.modelname]).flatMap( dimension_data => Object.values(dimension_data) ).flatMap( y => y);
+      return Object.values(this.category_model_lookup[this.modelname]).flatMap( dimension_data => Object.values(dimension_data) );
     }
 
   }

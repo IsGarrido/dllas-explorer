@@ -19,7 +19,7 @@ export const useIndexStore = defineStore('index', {
             categories_result: [],
             category_lookup: {},
             category_model_lookup: {},
-            dimension_model_lookup: {},
+            model_category_dimension_lookup: {},
 
             sentence_names: [],
             sentence_statistics: [],
@@ -99,11 +99,11 @@ export const useIndexStore = defineStore('index', {
                 if(!dimension[row.category])
                     dimension[row.category] = []
 
-                dimension[row.category].push(row); // MAL
+                dimension[row.category] = row;
                 return map;
             }, {});
 
-            this.dimension_model_lookup = category_results.reduce( (map, row) => {
+            this.model_category_dimension_lookup = category_results.reduce( (map, row) => {
                 let model_name = this.model_names[row.model];
                 if (!map[model_name])
                     map[model_name] = {};
@@ -119,8 +119,6 @@ export const useIndexStore = defineStore('index', {
                 category[row.dimension] = row;
                 return map;
             }, {});
-
-            debugger;
 
             this.category_lookup = category_results.reduce(function (map, item) {
                 if (!map[item.dimension]) {

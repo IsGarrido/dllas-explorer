@@ -78,8 +78,8 @@ let diffTable = computed( () => {
     let diffItems = [];
     for(let category of Object.keys(dimension1)){
 
-        let data1 = dimension1[category][0];
-        let data2 = dimension2[category][0];
+        let data1 = dimension1[category];
+        let data2 = dimension2[category];
         
         let categoryDiff = {
             category: data1["category"],

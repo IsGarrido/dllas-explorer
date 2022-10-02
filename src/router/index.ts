@@ -6,6 +6,7 @@ import ModelCategoryView from "@/views/ModelCategoryView.vue";
 import SentenceStatisticsVue from "@/views/SentenceStatistics.vue";
 import SelectExperimentVue from "@/views/SelectExperiment.vue";
 import ModelCompareDimensionsViewVue from "@/views/ModelCompareDimensionsView.vue";
+import CategoryStatisticsVue from "@/views/CategoryStatistics.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,6 +25,11 @@ const router = createRouter({
       path: '/sentences-statistics',
       name: 'sentences-statistics',
       component: SentenceStatisticsVue
+    },
+    {
+      path: '/categories-statistics',
+      name: 'categories-statistics',
+      component: CategoryStatisticsVue
     },
     {
       path: '/model/:modelname',

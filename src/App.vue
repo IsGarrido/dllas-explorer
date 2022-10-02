@@ -20,6 +20,7 @@
 
 import { useIndexStore } from "./stores";
 import { useSentenceStore } from "./stores/sentence";
+import { useModelCategoryStore } from "@/stores/modelcategory";
 
 import SpanishGenre10Experiment from "@/schema/spanish_genre_10";
 import Sidebar from "./reluihelpers/template/Sidebar.vue";
@@ -28,7 +29,7 @@ import { RouterView } from "vue-router";
 
 const indexStore = useIndexStore();
 const sentenceStore = useSentenceStore();
-
+const modelCategoryStore = useModelCategoryStore();
 const state = reactive({
   loaded: false,
   sidebar: [
@@ -45,6 +46,10 @@ const state = reactive({
       path: '/sentences-statistics'
     },
     {
+      label: 'Explore categories',
+      path: '/categories-statistics'
+    },
+    {
       type: 'separator'
     },
     {
@@ -56,7 +61,7 @@ const state = reactive({
 
 const load_experiment = (dto: { [key: string]: any }): void => {
 
-  const { words, data, models, sentences, ModelResults, DimensionResults, CategoryResults, SentenceStatistics, SentenceDimensionStatistics } = dto;
+  const { words, data, models, sentences, ModelResults, DimensionResults, CategoryResults, SentenceStatistics, SentenceDimensionStatistics, ModelCategoryStatistics, ModelCategoryDimensionStatistics } = dto;
 
   indexStore.setWords(words);
   indexStore.setModelNames(models);
@@ -70,6 +75,9 @@ const load_experiment = (dto: { [key: string]: any }): void => {
   sentenceStore.setSentenceStatistics(SentenceStatistics);
   sentenceStore.setSentenceDimensionStatistics(SentenceDimensionStatistics);
   sentenceStore.setDimensions(DimensionResults);
+
+  modelCategoryStore.setCategoryStatistics(ModelCategoryStatistics);
+  modelCategoryStore.setCategoryModelStatistics(ModelCategoryDimensionStatistics);
 
   state.loaded = true;
 }
