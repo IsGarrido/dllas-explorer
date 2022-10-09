@@ -4,7 +4,7 @@
 
     <div class="row g-0 flex-grow-1">
       <div class="col-2 border">
-        <Sidebar label="Dllas" :entries="state.sidebar">
+        <Sidebar label="Dllas" :entries="sidebar">
           <span>Selected a experiment: {{ indexStore.experiment }}</span>
         </Sidebar>
       </div>
@@ -20,32 +20,38 @@
 
 <script setup lang="ts">
 
+import { reactive } from "vue";
+import { RouterView } from "vue-router";
+import { computed } from "@vue/reactivity";
+
 import { useIndexStore } from "./stores";
 import DataService from "./service/DataService";
 
-import SpanishGenre10Experiment from "@/schema/spanish_genre_10";
 import Sidebar from "./reluihelpers/template/Sidebar.vue";
-import { reactive } from "vue";
-import { RouterView } from "vue-router";
+
+import SpanishGenre10Experiment from "@/schema/spanish_genre_10";
+
+const indexStore = useIndexStore();
+const _data = new DataService();
 
 const state = reactive({
   loaded: false,
   sidebar: [
     {
       label: 'Home',
-      path: '/'
+      name: 'home',
     },
     {
       label: 'Explore models',
-      path: '/explore'
+      name: 'explore',
     },
     {
       label: 'Explore templates',
-      path: '/sentences-statistics'
+      name: 'sentences-statistics'
     },
     {
       label: 'Explore categories',
-      path: '/categories-statistics'
+      name: 'categories-statistics'
     },
     {
       type: 'separator'
@@ -57,9 +63,17 @@ const state = reactive({
   ]
 });
 
-const indexStore = useIndexStore();
-const _data = new DataService();
 _data.load_experiment(SpanishGenre10Experiment);
+
+const sidebar = computed(() => {
+  let experiment = indexStore.experiment;
+  state.sidebar = state.sidebar.map( x => {
+    return {...x, payload: { experiment } };
+  });
+  console.count("App.vue > computed > indexStore.experiment");
+  return state.sidebar;
+});
+
 state.loaded = true;
 
 </script>

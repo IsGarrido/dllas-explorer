@@ -9,6 +9,9 @@
             <RouterLink class="btn btn btn-link " :to="{ name: 'model', params: {modelname: model.name } }">{{ model.name }} ({{ format(model.adj_prop) }} adjectives)</RouterLink>
           </span>
         </div>
+        <div class="row">
+          <router-view />
+        </div>
     </div>
 </div>
 
