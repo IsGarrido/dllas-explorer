@@ -35,9 +35,7 @@ export const useIndexStore = defineStore('index', {
         setExperiment(label){
             this.experiment = label;
         },
-        setCategories(categories) {
-            this.categories = categories;
-        },
+
         setWords(words) {
             this.words = words;
         },
@@ -70,8 +68,10 @@ export const useIndexStore = defineStore('index', {
                 return map;
             }, {});
         },
-        setDimensionResults(dimension_results) {
+        setDimensionResults(dimension_results, model_names_arr_by_index) {
             this.dimensions = [...new Set(dimension_results.map(x => x.dimension))]
+
+            dimension_results.forEach( item => item.modelname = model_names_arr_by_index[item.model]);
             this.dimension_results = dimension_results;
         },
         setModelResults(model_results) {

@@ -80,7 +80,6 @@ export default {
     getTableData() {
       if (!this.selectedLabel || this.selectedLabel === "all")
         return this.sentence_statistics;
-      debugger;
       return this.sentence_dimension_statistics[this.selectedLabel];
     }
   },

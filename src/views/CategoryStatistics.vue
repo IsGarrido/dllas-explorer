@@ -37,8 +37,8 @@
         <tbody>
           <tr v-for="(row, rIdx) in getTableData()" :key="rIdx">
             <td>{{ row.model_name }}</td>
-            <td :style="StyleHeatmap('score_prop', row.score_prop)">{{ this.format(row.score_prop, 2) }} %</td>
-            <td :style="StyleHeatmap('rsv_prop', row.rsv_prop)">{{ this.format(row.rsv_prop, 2) }} %</td>
+            <td :style="StyleHeatmap('score_prop', row.score_prop)">{{ row.score_prop }} %</td>
+            <td :style="StyleHeatmap('rsv_prop', row.rsv_prop)">{{ row.rsv_prop}} %</td>
           </tr>
           
         </tbody>
@@ -159,8 +159,8 @@ export default {
 
         let diff = {
           model_name: model, 
-          score_prop: score_prop1 - score_prop2,
-          rsv_prop: rsv_prop1 - rsv_prop2,
+          score_prop: this.format(score_prop1 - score_prop2, 2),
+          rsv_prop: this.format(rsv_prop1 - rsv_prop2, 2),
         }
 
         res.push(diff);

@@ -29,8 +29,6 @@ import DataService from "./service/DataService";
 
 import Sidebar from "./reluihelpers/template/Sidebar.vue";
 
-import SpanishGenre10Experiment from "@/schema/spanish_genre_10";
-
 const indexStore = useIndexStore();
 const _data = new DataService();
 
@@ -44,14 +42,17 @@ const state = reactive({
     {
       label: 'Explore models',
       name: 'explore',
+      needsExperiment: true
     },
     {
       label: 'Explore templates',
-      name: 'sentences-statistics'
+      name: 'sentences-statistics',
+      needsExperiment: true
     },
     {
       label: 'Explore categories',
-      name: 'categories-statistics'
+      name: 'categories-statistics',
+      needsExperiment: true
     },
     {
       type: 'separator'
@@ -63,14 +64,18 @@ const state = reactive({
   ]
 });
 
-_data.load_experiment(SpanishGenre10Experiment);
-
 const sidebar = computed(() => {
+
+  if(!indexStore.experiment)
+    return state.sidebar.filter( (e) => !e.needsExperiment );
+
   let experiment = indexStore.experiment;
   state.sidebar = state.sidebar.map( x => {
     return {...x, payload: { experiment } };
   });
+
   console.count("App.vue > computed > indexStore.experiment");
+  
   return state.sidebar;
 });
 

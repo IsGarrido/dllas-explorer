@@ -1,7 +1,6 @@
 <template>
   <div v-if="loaded">
     <BarChart :chartData="chartData" :options="options"></BarChart>
-    <!-- <canvas id="chart"></canvas> -->
   </div>
 </template>
 
@@ -9,7 +8,7 @@
 
 // import Chart from "chart.js/auto";
 import { Chart, registerables,  } from 'chart.js';
-import { BarChart, useBarChart } from 'vue-chart-3';
+import { BarChart } from 'vue-chart-3';
 
 Chart.register(...registerables);
 

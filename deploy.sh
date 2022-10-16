@@ -3,6 +3,8 @@
 # abort on errors
 set -e
 
+rm -rf dist
+
 # build
 npm run build
 
@@ -11,6 +13,7 @@ cd dist
 
 # place .nojekyll to bypass Jekyll processing
 echo > .nojekyll
+cp index.html 404.html
 
 # if you are deploying to a custom domain
 echo 'dllas.ismael.codes' > CNAME
