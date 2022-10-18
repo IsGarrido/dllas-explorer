@@ -66,7 +66,6 @@ import { useIndexStore } from '@/stores'
 import { mapState } from 'pinia'
 import ModelBarChart from './model/chart/ModelBarChart.vue'
 import SummaryCard from './data/SummaryCard.vue'
-import { useConfigStore } from '@/stores/config'
 import ModelRadarChartView from './model/ModelRadarChartView.vue'
 import ModelBarChartView from './model/ModelBarChartView.vue'
 
@@ -107,13 +106,9 @@ export default {
   },
   computed: {
     ...mapState(useIndexStore, [
-      'config',
       'model_results',
       'dimension_results',
       'dimensions',
-    ]),
-    ...mapState(useConfigStore, [
-      'categories'
     ]),
     modelname() {
       return this.$route.params.modelname;

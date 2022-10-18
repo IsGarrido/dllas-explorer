@@ -61,15 +61,6 @@ const form = reactive({
 const dimensionOptions = computed(() => indexStore.dimensions.map(dim => { return { text: dim, value: dim } }));
 const isCompareDisabled = computed(() => form.dimension1 === form.dimension2);
 
-// Methods
-const onCompareClicked = (_$event: any) => {
-    router.push({ name: 'model-compare-two-dimensions', params: { 
-        model: route.params.modelname.toString(),
-        dimension1: form.dimension1,
-        dimension2: form.dimension2
-    } })
-}
-
 let diffTable = computed( () => {
 
     let dimension1 : {[ key: string]: {}} = indexStore.category_model_lookup[route.params.modelname.toString()][form.dimension1];
