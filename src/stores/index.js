@@ -87,7 +87,7 @@ export const useIndexStore = defineStore('index', {
 
         },
         setCategoryResults(category_results) {
-            this.categories = [...new Set(category_results.map(x => x.category))].filter(x => x !== "unknown");
+            this.categories = [...new Set(category_results.map(x => x.category))].filter(x => x !== "unknown").filter(x => x !== "other");
             this.category_results = category_results;
 
             this.category_model_lookup = category_results.reduce( (map, row) => {

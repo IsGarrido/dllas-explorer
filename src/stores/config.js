@@ -16,7 +16,12 @@ export const useConfigStore = defineStore('config', {
             this.categories_enabled['Temporal'] = false;
             this.categories_enabled['Social/Politico'] = false;
             this.categories_enabled['Percepción (Sentidos)'] = false;
-            this.categories_enabled['Cantidad'] = false;
+            this.categories_enabled['MOTION'] = false;
+            this.categories_enabled['SPATIAL'] = false;
+            this.categories_enabled['SUBSTANCE'] = false;
+            this.categories_enabled['TEMPORAL'] = false;
+            this.categories_enabled['QUANTITY'] = false;
+            this.categories_enabled['PERCEPTION'] = false;
         },
     },
     getters: {

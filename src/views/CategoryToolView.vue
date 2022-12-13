@@ -87,7 +87,7 @@
 
   </div>
 
-  <div class="row" v-if="firstUncategorizedWord && columns.length > 0">
+  <div class="row" v-if="firstUncategorizedWord">
     <div class="col text-center">
       <h1>
         <small style="display: block; font-size: 20px; color: grey">Choose a category for the word:</small>
