@@ -47,7 +47,7 @@ let chart_data: any = computed(() => {
       if (!category_data) return 0;
 
       let category_total = config.use_score ? category_data.score_sum : category_data.rsv_sum;
-      if (config.show_prc) {
+      if (config.show_prc && false) {
         let model_data = model_lookup[modelName];
         let model_total = config.use_score ? model_data.score_sum : model_data.rsv_sum;
         return (category_total / model_total) * 100;

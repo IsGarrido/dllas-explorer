@@ -11,6 +11,7 @@ export const useIndexStore = defineStore('index', {
 
             dimensions: [],
             dimension_results: [],
+            dimension_lookup_by_model: {},
 
             model_names: [],
             model_results: [],
@@ -73,6 +74,21 @@ export const useIndexStore = defineStore('index', {
 
             dimension_results.forEach( item => item.modelname = model_names_arr_by_index[item.model]);
             this.dimension_results = dimension_results;
+
+            this.dimension_lookup_by_model = dimension_results.reduce((map, row) => {
+                let model_name = this.model_names[row.model];
+
+                if (!map[model_name])
+                    map[model_name] = {};
+
+                let model = map[model_name];
+                if (!model[row.dimension])
+                    model[row.dimension] = {}
+                
+                model[row.dimension] = row;
+                return map;
+
+            }, {});
         },
         setModelResults(model_results) {
             // this.models = model_results.map(x => x.model)

@@ -23,8 +23,11 @@
     </div>
 
     <!-- dimensions -->
-    <div class="row mt-4">
+    <div class="row mt-4 row-cols-4">
       <h4> Dimensions </h4>
+    </div>
+
+    <div class="row mt-4 row-cols-4">
       <div class="col" v-for="(dimension, didx) in model_dimensions" :key="didx">
         <h5> {{ dimension.dimension }} </h5>
         <SummaryCard :item="dimension"></SummaryCard>
@@ -51,6 +54,12 @@
       </div>
     </div>
 
+    <div class="row mt-4" v-if="loaded">
+    <div class="col-6">
+      <h4>Sentence Sentiment</h4>
+      <ModelSentimentBarChartViewVue></ModelSentimentBarChartViewVue>
+    </div></div>
+
 
     <pre>
 </pre>
@@ -68,6 +77,7 @@ import ModelBarChart from './model/chart/ModelBarChart.vue'
 import SummaryCard from './data/SummaryCard.vue'
 import ModelRadarChartView from './model/ModelRadarChartView.vue'
 import ModelBarChartView from './model/ModelBarChartView.vue'
+import ModelSentimentBarChartViewVue from './model/ModelSentimentBarChartView.vue'
 
 export default {
   props: [],
@@ -91,7 +101,8 @@ export default {
     ModelBarChart,
     SummaryCard,
     ModelRadarChartView,
-    ModelBarChartView
+    ModelBarChartView,
+    ModelSentimentBarChartViewVue
 },
   methods: {
     OnExploreTemplatesClicked() {
